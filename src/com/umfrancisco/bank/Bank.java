@@ -17,18 +17,38 @@ public class Bank {
 		return customer;
 	}
 	
-	public void addCustomer(Customer customer) {
+	protected boolean addCustomer(Customer customer) {
 		for (var c : customers) {
 			if (c.getId() == customer.getId()) {
 				System.out.println(customer.getName()+" is already a customer...");
-				return;
+				return false;
 			}
 		}
 		customers.add(customer);
+		return true;
+	}
+	
+	public boolean doTransaction(Customer a, Customer b, double amount) {
+		if (customers.contains(a) && customers.contains(b)) {
+			a.remove(amount);
+			b.add(amount);
+			return true;
+		}
+		return false;
 	}
 	
 	public int getBankNumber() {
 		return bankNumber;
+	}
+	
+	public Customer getCustomer(int id) {
+		for (var c : customers) {
+			if (c.getId() == id) {
+				return c;
+			}
+		}
+		System.out.println("Customer not found...");
+		return null;
 	}
 	
 	@Override

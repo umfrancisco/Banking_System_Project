@@ -14,11 +14,29 @@ public class Customer {
 	protected int getId() {
 		return id;
 	}
+	
 	protected String getName() {
 		return name;
 	}
+	
 	protected double getAmount() {
 		return amount;
+	}
+	
+	protected boolean add(double amount) {
+		if (amount > 0) {
+			this.amount += amount;
+			return true;
+		}
+		return false;
+	}
+	
+	protected boolean remove(double amount) {
+		if (amount > 0) {
+			this.amount -= amount;
+			return true;
+		}
+		return false;
 	}
 	
 	@Override
