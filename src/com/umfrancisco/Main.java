@@ -1,16 +1,36 @@
 package com.umfrancisco;
 
-import com.umfrancisco.bank.Bank;
+import java.util.Scanner;
 
 public class Main {
 	public static void main(String[] args) {
-		Bank bank = new Bank(100);
-		bank.newCustomer(1, "Ana", 2000);
-		bank.newCustomer(2, "Beatriz", 3000);
-		bank.newCustomer(3, "Carlos", 1200);
-		System.out.println(bank);
-		
-		bank.doTransaction(bank.getCustomer(1), bank.getCustomer(2), 500);
-		System.out.println(bank);
+		String mainMenu = """
+				Welcome to National Bank. Choose one option:
+					1 - New customer
+					2 - Add amount
+					3 - Remove amount
+					3 - Quit""";
+		Scanner scanner = new Scanner(System.in);
+		while (true) {
+			System.out.println(mainMenu);
+			System.out.println("-".repeat(40));
+			String option = scanner.nextLine();
+			
+			if (option.equals("1")) {
+				System.out.println("New Customer");
+			}
+			if (option.equals("2")) {
+				System.out.println("Add amount");
+			}
+			if (option.equals("3")) {
+				System.out.println("Remove amount");
+			}
+			if (option.equals("4")) {
+				System.out.println("Goodbye");
+				break;
+			}
+			System.out.println("-".repeat(40));
+		}
+		scanner.close();
 	}
 }

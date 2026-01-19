@@ -28,10 +28,17 @@ public class Bank {
 		return true;
 	}
 	
-	public boolean doTransaction(Customer a, Customer b, double amount) {
-		if (customers.contains(a) && customers.contains(b)) {
-			a.remove(amount);
-			b.add(amount);
+	public boolean addAmount(Customer c, double amount) {
+		if (customers.contains(c) && amount > 0) {
+			c.add(amount);
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean removeAmount(Customer c, double amount) {
+		if (customers.contains(c) && amount > 0) {
+			c.remove(amount);
 			return true;
 		}
 		return false;
