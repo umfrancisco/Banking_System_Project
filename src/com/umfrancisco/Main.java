@@ -48,7 +48,7 @@ public class Main {
 	
 	public static void showCustomerOptions(Scanner scanner, String customerMenu, Bank bank) {
 		while (true) {
-			System.out.print("Welcome to "+bank.getName()+" Bank\n");
+			System.out.print("Welcome to "+bank.getName()+" Bank\n\n");
 			System.out.print(customerMenu);
 			String option = scanner.nextLine();
 			System.out.println("-".repeat(40));
