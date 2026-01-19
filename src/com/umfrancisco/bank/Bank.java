@@ -5,10 +5,12 @@ import java.util.List;
 
 public class Bank {
 	private int bankNumber;
+	private String name;
 	private List<Customer> customers = new ArrayList<>();
 	
-	public Bank(int bankNumber) {
+	public Bank(int bankNumber, String name) {
 		this.bankNumber = bankNumber;
+		this.name = name;
 	}
 	
 	public Customer newCustomer(int id, String name, double amount) {
@@ -46,6 +48,10 @@ public class Bank {
 	
 	public int getBankNumber() {
 		return bankNumber;
+	}
+	
+	public String getName() {
+		return name;
 	}
 	
 	public Customer getCustomer(int id) {
