@@ -12,6 +12,12 @@ public class Main {
 		
 		String bankMenu = """
 				Hello! Welcome!
+				Bank Numbers:
+				
+					São Paulo Bank -> 100
+					New York Bank -> 200
+					Buenos Aires Bank -> 300
+					
 				Type your bank number:
 				""";
 		
