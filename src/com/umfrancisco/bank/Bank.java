@@ -13,34 +13,32 @@ public class Bank {
 		this.name = name;
 	}
 	
-	public Customer newCustomer(int id, String name, double amount) {
+	public Customer newBankCustomer(int id, String name, double amount) {
 		Customer customer = new Customer(id, name, amount);
-		this.addCustomer(customer);
+		this.addBankCustomer(customer);
 		return customer;
 	}
 	
-	protected boolean addCustomer(Customer customer) {
+	protected void addBankCustomer(Customer customer) {
 		for (var c : customers) {
 			if (c.getId() == customer.getId()) {
 				System.out.println(customer.getName()+" is already a customer...");
-				return false;
 			}
 		}
 		customers.add(customer);
-		return true;
 	}
 	
-	public boolean addAmount(Customer c, double amount) {
+	public boolean deposit(Customer c, double amount) {
 		if (customers.contains(c) && amount > 0) {
-			c.add(amount);
+			c.deposit(amount);
 			return true;
 		}
 		return false;
 	}
 	
-	public boolean removeAmount(Customer c, double amount) {
+	public boolean withdraw(Customer c, double amount) {
 		if (customers.contains(c) && amount > 0) {
-			c.remove(amount);
+			c.withdraw(amount);
 			return true;
 		}
 		return false;

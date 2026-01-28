@@ -1,8 +1,10 @@
 package com.umfrancisco;
 
+import java.util.Random;
 import java.util.Scanner;
 
 import com.umfrancisco.bank.Bank;
+import com.umfrancisco.bank.Customer;
 
 public class Main {
 	public static void main(String[] args) {
@@ -16,9 +18,8 @@ public class Main {
 		String customerMenu = """
 				Choose one option:
 					1 - New customer
-					2 - Add amount
-					3 - Remove amount
-					4 - Quit
+					2 - Existing customer
+					3 - Quit
 					""";
 		
 		Scanner scanner = new Scanner(System.in);
@@ -54,12 +55,22 @@ public class Main {
 			System.out.println("-".repeat(40));
 			
 			if (option.equals("1")) {
-				System.out.println("New Customer");
+				System.out.print("Enter your name: ");
+				String name = scanner.nextLine();
+				
+				System.out.print("Enter a amount: ");
+				String amount = scanner.nextLine();
+				
+				int randomGeneratedId = new Random().nextInt(1000);
+				bank.newBankCustomer(randomGeneratedId, name, Double.parseDouble(amount));
+				System.out.println("Your bank number is "+randomGeneratedId);
 			} else if (option.equals("2")) {
-				System.out.println("Add amount");
+				System.out.println("Existing customer");
+				System.out.print("Enter your bank number: ");
+				String id = scanner.nextLine();
+				Customer customer = bank.getCustomer(Integer.parseInt(id));
+				System.out.println("\n"+customer);
 			} else if (option.equals("3")) {
-				System.out.println("Remove amount");
-			} else if (option.equals("4")) {
 				System.out.println("Goodbye");
 				break;
 			} else {
