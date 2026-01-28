@@ -48,6 +48,14 @@ public class Main {
 	}
 	
 	public static void showCustomerOptions(Scanner scanner, String customerMenu, Bank bank) {
+		
+		String accountManagementMenu = """
+				Choose one option:
+					1 - Deposit
+					2 - Withdraw
+					3 - Return
+					""";
+		
 		while (true) {
 			System.out.print("Welcome to "+bank.getName()+" Bank\n\n");
 			System.out.print(customerMenu);
@@ -57,19 +65,17 @@ public class Main {
 			if (option.equals("1")) {
 				System.out.print("Enter your name: ");
 				String name = scanner.nextLine();
-				
 				System.out.print("Enter a amount: ");
 				String amount = scanner.nextLine();
-				
 				int randomGeneratedId = new Random().nextInt(1000);
 				bank.newBankCustomer(randomGeneratedId, name, Double.parseDouble(amount));
-				System.out.println("Your bank number is "+randomGeneratedId);
+				System.out.println("\nYour bank number is "+randomGeneratedId);
 			} else if (option.equals("2")) {
-				System.out.println("Existing customer");
+				System.out.println("Existing customer\n");
 				System.out.print("Enter your bank number: ");
 				String id = scanner.nextLine();
 				Customer customer = bank.getCustomer(Integer.parseInt(id));
-				System.out.println("\n"+customer);
+				showAccountManagementOptions(scanner, accountManagementMenu, customer, bank);
 			} else if (option.equals("3")) {
 				System.out.println("Goodbye");
 				break;
@@ -77,6 +83,33 @@ public class Main {
 				System.out.println("Try again...");
 			}
 			System.out.println("-".repeat(40));
+		}
+	}
+	
+	public static void showAccountManagementOptions(Scanner scanner, String accountManagementMenu, Customer customer, Bank bank) {
+		while (true) {
+			System.out.println("\n"+customer);
+			System.out.print(accountManagementMenu);
+			
+			String option = scanner.nextLine();
+			if (option.equals("1")) {
+				System.out.println("-".repeat(40));
+				System.out.print("Deposit\n\nEnter a value to deposit: ");
+				String value = scanner.nextLine();
+				boolean result = bank.deposit(customer, Double.parseDouble(value));
+				if (result) {
+					System.out.println("Deposit successful!!");
+				} else {
+					System.out.println("Something went wrong...");
+				}
+				System.out.println("-".repeat(40));
+			} else if (option.equals("2")) {
+				System.out.println("Withdraw");
+			} else if (option.equals("3")) {
+				break;
+			} else {
+				System.out.println("Try again...");
+			}
 		}
 	}
 }
