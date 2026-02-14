@@ -84,7 +84,15 @@ public class MenuOptions {
 				}
 				System.out.println("-".repeat(40));
 			} else if (option.equals("2")) {
-				System.out.println("Withdraw");
+				System.out.print("Withdraw\n\nEnter a value to withdraw: ");
+				String value = scanner.nextLine();
+				boolean result = bank.withdraw(customer, Double.parseDouble(value));
+				if (result) {
+					System.out.println("withdraw successful!!");
+				} else {
+					System.out.println("Something went wrong...");
+				}
+				System.out.println("-".repeat(40));
 			} else if (option.equals("3")) {
 				break;
 			} else {
